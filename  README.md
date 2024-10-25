@@ -1,2 +1,2 @@
 # ChampionsLeagueTickets
-Website for football tickets
+Website for football tickets on  Champions League.
