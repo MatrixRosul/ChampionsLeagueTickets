@@ -1,10 +1,16 @@
 import React from "react";
+import EventItem from "./components/EventItem/EventItem";
+
+import Main from "./pages/Main/Main";
+import Login from "./pages/Login/Login";
+import Info from "./pages/Info/Info";
+import NotFound from "./pages/NotFound/NotFound";
 
 const App = () =>{
     return (
-        <h1>
-            My React App
-        </h1>
+        <>
+           <NotFound/>
+        </>
     )
 }
 
