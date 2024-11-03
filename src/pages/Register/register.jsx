@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './Register.css';
+import { registerUser } from "../../api/api";
 
 const Register = () => {
     const [email, setEmail] = useState('');
@@ -21,7 +22,7 @@ const Register = () => {
         setConfirmPassword(e.target.value);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (!email || !password || !confirmPassword) {
@@ -36,9 +37,21 @@ const Register = () => {
 
         setError('');
 
-        console.log('Реєстрація:', { email, password });
-
-        navigate('/login');
+        const credentials = {email, password};
+        console.log(credentials);
+        try {
+            const result = await registerUser(credentials);
+            console.log(result);
+            if (result.error) {
+                setError("sdfsdf");
+            } else {
+                console.log('Реєстрація успішна:', result);
+                navigate('/login');
+            }
+        } catch (error) {
+            setError('Не вдалося зареєструватися. Спробуйте ще раз.');
+            console.error("Registration error:", error);
+        }
     };
 
     return (

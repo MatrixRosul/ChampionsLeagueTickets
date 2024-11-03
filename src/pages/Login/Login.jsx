@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './Login.css';
+import {loginUser} from "../../api/api";
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -16,7 +17,9 @@ const Login = () => {
         setPassword(e.target.value);
     };
 
-    const handleSubmit = (e) => {
+
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (!email || !password) {
@@ -26,15 +29,31 @@ const Login = () => {
 
         setError('');
 
-        console.log('Логін:', { email, password });
 
-        navigate('/');
+        const credentials = {email, password};
+
+        try {
+            const result = await loginUser(credentials);
+            console.log("Login result:", result);
+
+            if (!result) {
+                setError("Невірний логін або пароль");
+            } else {
+                console.log('Логін успішний:', result);
+                navigate('/');
+            }
+        } catch (error) {
+            setError('Не вдалося увійти. Спробуйте ще раз.');
+            console.error("Login error:", error);
+        }
+
+
     };
 
     return (
         <div className="login-container">
             <h2>Login</h2>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
+           {error && <p style={{ color: 'red' }}>{error}</p>}
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Email:</label>

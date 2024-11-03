@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import './Main.css';
 import Hero from '../../assets/hero-image.png';
@@ -7,8 +7,17 @@ import img1 from '../../assets/shakhtar.png';
 import img2 from '../../assets/arsenal.png';
 import EventItem from "../../components/EventItem/EventItem";
 import CustomButton from "../../components/CustomButton/CustomButton";
+import {getAllEvents} from "../../api/api";
 
 const Main = () => {
+    const [events, setEvents] = useState();
+
+    useEffect(() => {
+        getAllEvents().then(setEvents);
+    }, []);
+
+
+
     const eventsData = [
         {
             title: "Match 1: Team A vs Team B",
@@ -33,6 +42,9 @@ const Main = () => {
         },
     ];
 
+    if( !events )
+        return null;
+
     return (
         <div>
             <nav className="navbar">
@@ -51,7 +63,7 @@ const Main = () => {
                 <div className="event-list" id="events">
                     <h1>Upcoming events</h1>
                     <div className="event-items">
-                        {eventsData.map((event, index) => (
+                        {events.map((event, index) => (
                             <EventItem
                                 key={index}
                                 title={event.title}
@@ -69,7 +81,7 @@ const Main = () => {
                 <div className="hot-offers-list" id="offers">
                     <h1>Hot offers</h1>
                     <div className="event-items">
-                        {eventsData.map((event, index) => (
+                        {events.map((event, index) => (
                             <EventItem
                                 key={index}
                                 title={event.title}
