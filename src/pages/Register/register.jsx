@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import './Login.css';
+import './Register.css';
 
-const Login = () => {
+const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
@@ -16,24 +17,33 @@ const Login = () => {
         setPassword(e.target.value);
     };
 
+    const handleConfirmPasswordChange = (e) => {
+        setConfirmPassword(e.target.value);
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (!email || !password) {
+        if (!email || !password || !confirmPassword) {
             setError('Заповніть усі поля');
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            setError('Паролі не співпадають');
             return;
         }
 
         setError('');
 
-        console.log('Логін:', { email, password });
+        console.log('Реєстрація:', { email, password });
 
-        navigate('/');
+        navigate('/login');
     };
 
     return (
-        <div className="login-container">
-            <h2>Login</h2>
+        <div className="register-container">
+            <h2>Register</h2>
             {error && <p style={{ color: 'red' }}>{error}</p>}
             <form onSubmit={handleSubmit}>
                 <div>
@@ -54,13 +64,22 @@ const Login = () => {
                         required
                     />
                 </div>
-                <button type="submit">Login</button>
+                <div>
+                    <label>Confirm Password:</label>
+                    <input
+                        type="password"
+                        value={confirmPassword}
+                        onChange={handleConfirmPasswordChange}
+                        required
+                    />
+                </div>
+                <button type="submit">Register</button>
             </form>
             <p>
-                Немає облікового запису? <Link to="/register">Зареєструватися</Link>
+                Уже маєте обліковий запис? <Link to="/login">Увійти</Link>
             </p>
         </div>
     );
 };
 
-export default Login;
+export default Register;
