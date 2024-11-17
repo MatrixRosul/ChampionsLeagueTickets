@@ -1,0 +1,11 @@
+.custom-button {
+    color: #3D37F1;
+    border: 2px solid #3D37F1;
+    font-size: 20px;
+    border-radius: 80px;
+    font-weight: 700;
+    width: 250px;
+    height: 70px;
+    background: inherit;
+    margin: 0 auto;
+}
