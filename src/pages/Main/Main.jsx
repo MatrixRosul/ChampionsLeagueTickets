@@ -8,13 +8,13 @@ import img2 from '../../assets/arsenal.png';
 import EventItem from "../../components/EventItem/EventItem";
 import CustomButton from "../../components/CustomButton/CustomButton";
 import {getAllEvents} from "../../api/api";
+import useFetch from "../../hooks/useFetch";
 
 const Main = () => {
-    const [events, setEvents] = useState();
 
-    useEffect(() => {
-        getAllEvents().then(setEvents);
-    }, []);
+    const {data: events} = useFetch(getAllEvents);
+
+
 
 
 

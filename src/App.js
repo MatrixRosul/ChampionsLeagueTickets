@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound/NotFound";
 import Register from "./pages/register/register";
 
 const App = () => {
+    const contextValue = { basename: "/my-app" };
     return (
             <Routes>
                 <Route path="/" element={<Main/>} />

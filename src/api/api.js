@@ -37,7 +37,7 @@ export const loginUser = async (credentials) => {
 
 export const registerUser = async (credentials) => {
     try {
-        const response = await axiosInstance.post('/register_mockapi', credentials);
+        const response = await axiosInstance.post('/register$_mockapi', credentials);
         return response.data;
     } catch (error) {
         console.error("Registration error:", error);
