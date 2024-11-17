@@ -1,0 +1,65 @@
+.ticket-booking {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #f0f4ff;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.event-details, .stadium-plan, .order-summary {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 80%;
+    text-align: center;
+}
+
+.event-details .teams {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.event-details .teams h3 {
+    margin: 0 10px;
+}
+
+.stadium-plan .stadium {
+    position: relative;
+    width: 100%;
+    padding-top: 50%;
+    background-color: #007300;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.img_stad{
+    width: 100%;
+}
+
+.img_choose{
+    width: 100%;
+}
+
+
+.order-summary .summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.checkout button {
+    background-color: #7F7DF3;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.checkout button:hover {
+    background-color: #483d8b;
+}
